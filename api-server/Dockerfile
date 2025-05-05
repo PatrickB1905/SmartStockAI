@@ -16,6 +16,10 @@ RUN npm run build
 # Stage 2: Prepare Production-Ready Image  #
 ############################################
 FROM node:18.17.1-alpine AS runtime
+
+# install curl for healthchecks
+RUN apk add --no-cache curl
+
 WORKDIR /app
 
 # Ensure environment is set to production for optimal performance

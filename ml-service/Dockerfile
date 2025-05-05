@@ -15,6 +15,12 @@ RUN pip install --upgrade pip \
 FROM python:3.10.12-slim
 WORKDIR /app
 
+# Install curl for healthchecks
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # Enforce least-privilege by running as a dedicated non-root user
 RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
