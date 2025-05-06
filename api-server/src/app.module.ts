@@ -16,6 +16,7 @@ import { StockLevelModule } from './stock-level/stock-level.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      introspection: true,
       playground: true,
       sortSchema: true,
     }),

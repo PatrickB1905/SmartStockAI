@@ -1,0 +1,58 @@
+# Products
+query Products {
+  products {
+    id
+    sku
+    name
+    description
+  }
+}
+mutation CreateProduct($input: CreateProductInput!) {
+  createProduct(createProductInput: $input) {
+    id
+    sku
+    name
+    description
+  }
+}
+# Warehouses
+query Warehouses {
+  warehouses {
+    id
+    location
+    capacity
+  }
+}
+mutation CreateWarehouse($input: CreateWarehouseInput!) {
+  createWarehouse(createWarehouseInput: $input) {
+    id
+    location
+    capacity
+  }
+}
+# Stock Levels
+query StockLevels {
+  stockLevels {
+    id
+    quantity
+    # fetch the full nested product object
+    product {
+      id
+      sku
+      name
+    }
+    # fetch the full nested warehouse object
+    warehouse {
+      id
+      location
+    }
+  }
+}
+mutation CreateStockLevel($input: CreateStockLevelInput!) {
+  createStockLevel(createStockLevelInput: $input) {
+    id
+    quantity
+    productId
+    warehouseId
+  }
+}
